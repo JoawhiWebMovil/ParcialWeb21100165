@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ParcialWeb21100165.Data;
+using ParcialWeb21100165.Interfaces;
+using ParcialWeb21100165.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var cnx = _config.GetConnectionString("DevConnection");
 builder.Services
     .AddDbContext<Parcial20240221100165DbContext>
     (options => options.UseSqlServer(cnx));
+
+builder.Services.AddTransient<ICompetencyRepository, CompetencyRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
